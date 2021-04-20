@@ -19,8 +19,10 @@ def parse_config_params():
 	
 	config_params = {}
 	try:
-		with open('./config/server.json') as f:
-			config = json.load(f)
+		config = {}
+		if os.path.isfile('./config/server.json'):
+			with open('./config/server.json') as f:
+				config = json.load(f)
 		config_params["port"] = int(config['SERVER_PORT'] if 'SERVER_PORT' in config else os.environ["SERVER_PORT"])
 		config_params["listen_backlog"] = int(config['SERVER_LISTEN_BACKLOG'] if 'SERVER_LISTEN_BACKLOG' in config else os.environ["SERVER_LISTEN_BACKLOG"])
 	except KeyError as e:
