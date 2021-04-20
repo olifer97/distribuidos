@@ -5,12 +5,14 @@ services:
     image: server:latest
     entrypoint: python3 /main.py
     environment:
+      - SERVER_PORT=12345
       - PYTHONUNBUFFERED=1
       - SERVER_IP=server
-      - SERVER_PORT=12345
       - SERVER_LISTEN_BACKLOG=5
     networks:
       - testing_net
+    volumes:
+      - ./shared_data:/config
 
   client1:
     container_name: client1
@@ -32,3 +34,6 @@ networks:
       driver: default
       config:
         - subnet: 172.25.125.0/24
+
+volumes:
+  shared_data:

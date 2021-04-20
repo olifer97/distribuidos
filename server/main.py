@@ -3,6 +3,7 @@
 import os
 import time
 import logging
+import json
 from common.server import Server
 
 
@@ -15,10 +16,13 @@ def parse_config_params():
 	be parsed, a ValueError is thrown. If parsing succeeded, the function
 	returns a map with the env variables
 	"""
+	
 	config_params = {}
 	try:
-		config_params["port"] = int(os.environ["SERVER_PORT"])
-		config_params["listen_backlog"] = int(os.environ["SERVER_LISTEN_BACKLOG"])
+		with open('./config/server.json') as f:
+			config = json.load(f)
+		config_params["port"] = int(config['SERVER_PORT'] if 'SERVER_PORT' in config else os.environ["SERVER_PORT"])
+		config_params["listen_backlog"] = int(config['SERVER_LISTEN_BACKLOG'] if 'SERVER_LISTEN_BACKLOG' in config else os.environ["SERVER_LISTEN_BACKLOG"])
 	except KeyError as e:
 		raise KeyError("Key was not found. Error: {} .Aborting server".format(e))
 	except ValueError as e:
