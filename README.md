@@ -116,6 +116,10 @@ y esperar recibir el mismo mensaje enviado.
 Netcat no debe ser instalado en la maquina y no se puede exponer puertos del
 servidor para realizar la comunicación. (Hint: docker network)
 
+### Como correrlo:
+
+- Se agrego el target "test" al makefile, entonces: `make test`
+
 ## Ejercicio N°4 (Opcional):
 Modificar el servidor actual para que el mismo permita procesar mensajes y aceptar nuevas
 conexiones en paralelo.
