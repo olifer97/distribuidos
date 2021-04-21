@@ -27,6 +27,8 @@ services:
       - testing_net
     depends_on:
       - server
+    volumes:
+      - ./shared_data:/config
 
 networks:
   testing_net:
