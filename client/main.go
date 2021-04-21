@@ -31,9 +31,7 @@ func InitConfig() (*common.ClientConfig, error) {
 	v.AutomaticEnv()
 
 	err_read := v.ReadInConfig()
-
 	err_unmarshal := v.Unmarshal(&configuration)
-
 	if err_read != nil && err_unmarshal != nil  {
 		return nil, errors.Wrapf(err_read, "Could not parse config variables")
 	}
