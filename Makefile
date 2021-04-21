@@ -32,3 +32,7 @@ docker-compose-down:
 docker-compose-logs:
 	docker-compose -f docker-compose-dev.yaml logs -f
 .PHONY: docker-compose-logs
+
+test: docker-compose-up
+	cd netcat_test && ./test.sh
+.PHONY: test
